@@ -5,7 +5,7 @@ plugins {
 }
 
 kotlin {
-    androidTarget()
+    android()
     sourceSets {
         val androidMain by getting {
             dependencies {
@@ -16,15 +16,11 @@ kotlin {
 }
 
 android {
-    compileSdk = (findProperty("android.compileSdk") as String).toInt()
-    namespace = "com.myapplication"
-
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-
+    compileSdk = 33
     defaultConfig {
-        applicationId = "com.myapplication.MyApplication"
-        minSdk = (findProperty("android.minSdk") as String).toInt()
-        targetSdk = (findProperty("android.targetSdk") as String).toInt()
+        applicationId = "com.glebg.FunkyTunes"
+        minSdk = 26
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
     }
@@ -32,7 +28,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlin {
-        jvmToolchain(11)
-    }
+}
+
+
+compose {
+    val composeVersion = project.property("compose.wasm.version") as String
+    kotlinCompilerPlugin.set(composeVersion)
 }

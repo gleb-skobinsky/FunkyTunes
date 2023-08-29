@@ -1,0 +1,13 @@
+package example.funkytunes.model.filtration
+
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asAndroidBitmap
+import androidx.compose.ui.graphics.asImageBitmap
+import example.funkytunes.core.BitmapFilter
+import example.funkytunes.utils.applyGrayScaleFilter
+
+class GrayScaleFilter : BitmapFilter {
+
+    override fun apply(bitmap: ImageBitmap): ImageBitmap =
+        applyGrayScaleFilter(bitmap.asAndroidBitmap()).asImageBitmap()
+}
